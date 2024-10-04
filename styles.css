@@ -148,14 +148,13 @@ tr:hover {
 /* Footer Styling */
 footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     background-color: #0073e6;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
-
 /* Media Queries: Adjust for Phones */
 @media screen and (max-width: 768px) {
     header h1 {

@@ -43,7 +43,6 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
                 .replace(/pi/g, 'Math.PI')           // Replace pi with Math.PI
                 .replace(/(?<![a-zA-Z])e(?![a-zA-Z])/g, 'Math.E'); // Replace e with Math.E for JavaScript
 
-
             // Safely evaluate the formula for the given x value
             return new Function('x', `return ${parsedFormula}`)(x);
         } catch (e) {
@@ -68,14 +67,28 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
 
     const output = [];
 
+    // Add the first iteration BEFORE the loop
+    const f_xi = evaluateFormula(formula, xl);
+    const f_xk = evaluateFormula(formula, xk);
+    const f_xr = evaluateFormula(formula, xr);
+
+    output.push({
+        iteration: 1,
+        xi: xl.toFixed(6),
+        xk: xk.toFixed(6),
+        xr: xr.toFixed(6),
+        f_xi: f_xi.toFixed(6),
+        f_xk: f_xk.toFixed(6),
+        f_xr: f_xr.toFixed(6),
+        ea: "N/A"  // No error on the first iteration
+    });
+
+    // Iterate from the second iteration onward
     while (ea > es && iteration < maxIterations) {
         iteration++;
 
-        const f_xi = evaluateFormula(formula, xl);
-        const f_xk = evaluateFormula(formula, xk);
-        const f_xr = evaluateFormula(formula, xr);
-
         const old_xr = xr;
+
         if (f_xi * f_xr < 0) {
             xk = xr;
         } else if (f_xr * f_xk < 0) {
@@ -88,13 +101,13 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
         ea = Math.abs((xr - old_xr) / xr) * 100;
 
         output.push({
-            iteration,
+            iteration: iteration + 1,  // Adjust iteration number to reflect real count
             xi: xl.toFixed(6),
             xk: xk.toFixed(6),
             xr: xr.toFixed(6),
-            f_xi: f_xi.toFixed(6),
-            f_xk: f_xk.toFixed(6),
-            f_xr: f_xr.toFixed(6),
+            f_xi: evaluateFormula(formula, xl).toFixed(6),
+            f_xk: evaluateFormula(formula, xk).toFixed(6),
+            f_xr: evaluateFormula(formula, xr).toFixed(6),
             ea: ea.toFixed(6)
         });
 

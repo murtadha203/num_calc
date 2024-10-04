@@ -169,7 +169,7 @@ footer {
 
     nav ul li {
         display: block; /* Stack the links vertically */
-        margin: 25px 0; /* Add vertical margin between the links */
+        margin: 75px 0; /* Add vertical margin between the links */
     }
 
     input, select, button {

@@ -1,27 +1,32 @@
-/* Base styles (Mobile-First Design) */
+/* Base styles (keep your design intact) */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f0f4f8;
+    background-color: #f5f5f5;
     color: #333;
-    padding: 10px;
+    padding: 20px;
 }
 
-/* Header for mobile */
 header {
-    padding: 10px;
+    background-color: #0073e6;
+    padding: 20px;
     text-align: center;
+    color: white;
 }
 
 header h1 {
-    font-size: 28px;  /* Smaller title on mobile */
+    font-size: 36px;
     margin-bottom: 10px;
 }
 
-header nav {
-    margin-top: 10px;
+header nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 10px;
+    font-weight: bold;
 }
 
-/* Adjust list items to stack vertically on mobile */
+/* Navigation List */
 nav ul {
     list-style-type: none;
     padding: 0;
@@ -29,102 +34,166 @@ nav ul {
 }
 
 nav ul li {
-    display: block;  /* Stack navigation links vertically */
-    margin: 10px 0;
+    display: inline-block;
+    margin: 0 15px;
 }
 
 nav ul li a {
-    padding: 12px;
-    font-size: 16px;  /* Smaller font size on mobile */
+    background-color: #005bb5;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
 
-/* Main Content on Mobile */
+nav ul li a:hover {
+    background-color: #003f7d;
+}
+
+/* Main Content */
 main {
-    padding: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
     border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Form Elements on Mobile */
+h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #0073e6;
+}
+
+/* Form Styling */
 form {
     margin-bottom: 40px;
 }
 
 label {
-    font-size: 16px;  /* Smaller label size on mobile */
+    font-size: 18px;
+    margin-bottom: 10px;
+    display: block;
 }
 
 input, select {
-    padding: 10px;  /* Slightly smaller padding for input fields */
-    font-size: 14px;
-    margin-bottom: 15px;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 2px solid #0073e6;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f5f5f5;
 }
 
-/* Buttons on Mobile */
 button {
-    padding: 10px 15px;
-    font-size: 16px;  /* Smaller button size on mobile */
+    padding: 12px 20px;
+    background-color: #0073e6;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
 }
 
-/* Tables on Mobile */
+button:hover {
+    background-color: #005bb5;
+}
+
+button.back {
+    background-color: #f53d3d;
+    margin-left: 10px;
+}
+
+button.back:hover {
+    background-color: #b32e2e;
+}
+
+/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
 }
 
 th, td {
-    padding: 10px;  /* Smaller padding for table cells */
-    font-size: 14px;
+    padding: 12px 15px;
+    text-align: center;
+    font-size: 16px;
 }
 
-/* Make tables scrollable on smaller screens */
-table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
+th {
+    background-color: #0073e6;
+    color: white;
 }
 
-/* Footer on Mobile */
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Footer Styling */
 footer {
-    padding: 10px;
-    font-size: 14px;
+    text-align: center;
+    padding: 20px;
+    background-color: #0073e6;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
-/* Adjustments for larger screens (tablets, desktops) */
-@media (min-width: 768px) {
+/* Media Queries: Adjust for Phones */
+@media screen and (max-width: 768px) {
     header h1 {
-        font-size: 36px;
+        font-size: 24px;
+    }
+
+    header nav a {
+        font-size: 14px;
+        margin: 0 5px;
     }
 
     nav ul li {
-        display: inline-block;
-        margin: 0 15px;
+        display: block;
+        margin: 10px 0;
     }
 
-    main {
-        padding: 20px;
-    }
-
-    label {
-        font-size: 18px;
-    }
-
-    input, select {
-        padding: 12px;
-        font-size: 16px;
+    input, select, button {
+        font-size: 14px;
+        padding: 10px;
     }
 
     button {
-        padding: 12px 20px;
-        font-size: 18px;
+        width: 100%;
+        margin-bottom: 10px;
     }
 
-    th, td {
-        padding: 12px;
-        font-size: 16px;
+    button.back {
+        width: 100%;
+        margin: 0;
     }
 
-    footer {
-        padding: 20px;
-        font-size: 16px;
+    table, th, td {
+        font-size: 14px;
+    }
+
+    /* Make tables scrollable on small screens */
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
     }
 }

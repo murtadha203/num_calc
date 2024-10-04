@@ -148,7 +148,7 @@ tr:hover {
 /* Footer Styling */
 footer {
     text-align: center;
-    padding: 50px;
+    padding: 10px;
     background-color: #0073e6;
     color: white;
     position: fixed;
@@ -199,7 +199,7 @@ footer {
     }
     footer {
     text-align: center;
-    padding: 80px;
+    padding: 10px;
     background-color: #0073e6;
     color: white;
     position: fixed;

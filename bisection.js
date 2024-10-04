@@ -40,7 +40,7 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
                 .replace(/cos/g, 'Math.cos')          // Replace cos with Math.cos
                 .replace(/sin/g, 'Math.sin')          // Replace sin with Math.sin
                 .replace(/tan/g, 'Math.tan')          // Replace tan with Math.tan
-                .replace(/pi/g, 'Math.PI')           // Replace pi with Math.PI
+                .replace(/pi/g, 'Math.PI')            // Replace pi with Math.PI
                 .replace(/(?<![a-zA-Z])e(?![a-zA-Z])/g, 'Math.E'); // Replace e with Math.E for JavaScript
 
             // Safely evaluate the formula for the given x value
@@ -52,7 +52,7 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
 
     let xr = (xl + xk) / 2;
     let ea = 100;
-    let iteration = 0;
+    let iteration = 1;  // Start iteration count from 1
     let maxIterations = 100;
     let es = 0;
 
@@ -67,51 +67,61 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
 
     const output = [];
 
-    // Add the first iteration BEFORE the loop
-    const f_xi = evaluateFormula(formula, xl);
-    const f_xk = evaluateFormula(formula, xk);
-    const f_xr = evaluateFormula(formula, xr);
+    // Calculate the initial values for the first row
+    let f_xi = evaluateFormula(formula, xl);
+    let f_xk = evaluateFormula(formula, xk);
+    let f_xr = evaluateFormula(formula, xr);
 
+    // Push the first iteration result before entering the loop
     output.push({
-        iteration: 1,
+        iteration,
         xi: xl.toFixed(6),
         xk: xk.toFixed(6),
         xr: xr.toFixed(6),
         f_xi: f_xi.toFixed(6),
         f_xk: f_xk.toFixed(6),
         f_xr: f_xr.toFixed(6),
-        ea: "N/A"  // No error on the first iteration
+        ea: "N/A"  // No error on the first calculation
     });
 
-    // Iterate from the second iteration onward
+    // Iterate until the stopping condition is met
     while (ea > es && iteration < maxIterations) {
         iteration++;
 
         const old_xr = xr;
 
+        // Check where the root is and update xi or xk accordingly
         if (f_xi * f_xr < 0) {
-            xk = xr;
+            xk = xr;  // Root lies between xi and xr, so update xk
+            f_xk = f_xr;  // Update f_xk since xk has changed
         } else if (f_xr * f_xk < 0) {
-            xl = xr;
+            xl = xr;  // Root lies between xr and xk, so update xi
+            f_xi = f_xr;  // Update f_xi since xi has changed
         } else {
-            break; // Found exact root
+            break; // Exact root found
         }
 
+        // Recalculate midpoint and function values
         xr = (xl + xk) / 2;
+        f_xr = evaluateFormula(formula, xr);
+
+        // Calculate the approximate error
         ea = Math.abs((xr - old_xr) / xr) * 100;
 
+        // Push the result for this iteration
         output.push({
-            iteration: iteration + 1,  // Adjust iteration number to reflect real count
+            iteration,
             xi: xl.toFixed(6),
             xk: xk.toFixed(6),
             xr: xr.toFixed(6),
-            f_xi: evaluateFormula(formula, xl).toFixed(6),
-            f_xk: evaluateFormula(formula, xk).toFixed(6),
-            f_xr: evaluateFormula(formula, xr).toFixed(6),
+            f_xi: f_xi.toFixed(6),
+            f_xk: f_xk.toFixed(6),
+            f_xr: f_xr.toFixed(6),
             ea: ea.toFixed(6)
         });
 
-        if (ea <= es) break; // Stopping condition met
+        // Check stopping condition
+        if (ea <= es) break;
     }
 
     return output;

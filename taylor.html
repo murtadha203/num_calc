@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taylor Error Calculation</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Taylor Error Calculation</h1>
+        <nav>
+            <a href="../index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="taylor-form">
+            <label for="x">Enter x value (e.g., pi/3):</label>
+            <input type="text" id="x" required>
+
+            <label for="function-type">Choose function:</label>
+            <select id="function-type">
+                <option value="exp">exp()</option>
+                <option value="cos">cos()</option>
+                <option value="sin">sin()</option>
+            </select>
+
+            <label for="stopping-condition">Stopping condition:</label>
+            <select id="stopping-condition">
+                <option value="digits">Significant digits</option>
+                <option value="error">Stopping error</option>
+                <option value="iterations">Iterations</option>
+            </select>
+
+            <label for="stopping-value">Enter stopping value:</label>
+            <input type="text" id="stopping-value" required>
+
+            <button type="submit">Calculate Taylor Error</button>
+            <button type="button" class="back" onclick="window.history.back();">Back</button>
+        </form>
+
+        <div id="taylor-result">
+            <!-- Results will be displayed here -->
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 Numerical Methods Tools</p>
+    </footer>
+
+    <script src="../js/taylor.js"></script>
+</body>
+</html>

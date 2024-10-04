@@ -35,8 +35,9 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin: 0 15px;
+    margin: 0 20px; /* Increase horizontal margin between links */
 }
+
 
 nav ul li a {
     background-color: #005bb5;
@@ -167,8 +168,8 @@ footer {
     }
 
     nav ul li {
-        display: block;
-        margin: 10px 0;
+        display: block; /* Stack the links vertically */
+        margin: 25px 0; /* Add vertical margin between the links */
     }
 
     input, select, button {

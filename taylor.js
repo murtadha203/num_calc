@@ -2,7 +2,6 @@ document.getElementById('taylor-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const x = parseFloat(eval(document.getElementById('x').value.replace('pi', 'Math.PI')));
-    const x = parseFloat(eval(document.getElementById('x').value.replace('Pi', 'Math.PI')));
     const funcType = document.getElementById('function-type').value;
     const stoppingType = document.getElementById('stopping-condition').value;
     const stoppingValue = parseFloat(document.getElementById('stopping-value').value);
@@ -33,13 +32,12 @@ function calculateTaylorError(x, funcType, stoppingType, stoppingValue) {
         return preResult === 0 ? Infinity : Math.abs((result - preResult) / result) * 100;
     };
 
-    const functions = {
-        exp: Math.exp,
-        cos: Math.cos,
-        sin: Math.sin
-    };
+    const tResult = {
+        exp: Math.exp(x),
+        cos: Math.cos(x),
+        sin: Math.sin(x)
+    }[funcType];
 
-    const tResult = functions[funcType](x);
     let result = 0, preResult = 0, output = [];
     let it = 100, es = 0;
 
@@ -53,7 +51,27 @@ function calculateTaylorError(x, funcType, stoppingType, stoppingValue) {
     }
 
     for (let i = 0; i < it; i++) {
-        const term = Math.pow(x, i) / findFactorial(i);
+        let term = 0;
+
+        // Adjust the term calculation based on the function type
+        if (funcType === 'exp') {
+            term = Math.pow(x, i) / findFactorial(i);
+        } else if (funcType === 'sin') {
+            if (i % 2 !== 0) { // Odd powers for sine
+                term = Math.pow(x, i) / findFactorial(i);
+                if ((i - 1) % 4 !== 0) term = -term; // Alternate signs
+            } else {
+                continue; // Skip even terms for sine
+            }
+        } else if (funcType === 'cos') {
+            if (i % 2 === 0) { // Even powers for cosine
+                term = Math.pow(x, i) / findFactorial(i);
+                if (i % 4 !== 0) term = -term; // Alternate signs
+            } else {
+                continue; // Skip odd terms for cosine
+            }
+        }
+
         preResult = result;
         result += term;
         const et = calculateErrors(tResult, result);

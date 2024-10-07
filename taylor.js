@@ -2,6 +2,7 @@ document.getElementById('taylor-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const x = parseFloat(eval(document.getElementById('x').value.replace('pi', 'Math.PI')));
+    const x = parseFloat(eval(document.getElementById('x').value.replace('Pi', 'Math.PI')));
     const funcType = document.getElementById('function-type').value;
     const stoppingType = document.getElementById('stopping-condition').value;
     const stoppingValue = parseFloat(document.getElementById('stopping-value').value);

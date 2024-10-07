@@ -3,26 +3,26 @@ body {
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
     color: #333;
-    padding: 20px;
+    padding: 40px; /* Increased padding */
 }
 
 header {
     background-color: #0073e6;
-    padding: 20px;
+    padding: 40px; /* Increased padding */
     text-align: center;
     color: white;
 }
 
 header h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
+    font-size: 48px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
 }
 
 header nav a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
-    margin: 0 10px;
+    font-size: 24px; /* Increased font size */
+    margin: 0 20px; /* Increased margin */
     font-weight: bold;
 }
 
@@ -35,16 +35,15 @@ nav ul {
 
 nav ul li {
     display: inline-block;
-    margin: 0 20px; /* Increase horizontal margin between links */
+    margin: 0 40px; /* Increased horizontal margin */
 }
-
 
 nav ul li a {
     background-color: #005bb5;
-    padding: 10px 20px;
+    padding: 15px 30px; /* Increased padding */
     border-radius: 5px;
     color: white;
-    font-size: 18px;
+    font-size: 22px; /* Increased font size */
     text-transform: uppercase;
     text-decoration: none;
     transition: background-color 0.3s ease;
@@ -57,48 +56,48 @@ nav ul li a:hover {
 /* Main Content */
 main {
     max-width: 1200px;
-    margin: 20px auto;
+    margin: 40px auto; /* Increased margin */
     background-color: white;
-    padding: 20px;
+    padding: 40px; /* Increased padding */
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Slightly larger shadow */
 }
 
 h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+    font-size: 36px; /* Increased font size */
+    margin-bottom: 30px; /* Increased margin */
     color: #0073e6;
 }
 
 /* Form Styling */
 form {
-    margin-bottom: 40px;
+    margin-bottom: 60px; /* Increased margin */
 }
 
 label {
-    font-size: 18px;
-    margin-bottom: 10px;
+    font-size: 24px; /* Increased font size */
+    margin-bottom: 20px; /* Increased margin */
     display: block;
 }
 
 input, select {
     width: 100%;
-    padding: 12px;
-    margin-bottom: 20px;
+    padding: 18px; /* Increased padding */
+    margin-bottom: 30px; /* Increased margin */
     border: 2px solid #0073e6;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 20px; /* Increased font size */
     background-color: #f5f5f5;
 }
 
 button {
-    padding: 12px 20px;
+    padding: 18px 30px; /* Increased padding */
     background-color: #0073e6;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 22px; /* Increased font size */
     transition: background-color 0.3s ease;
 }
 
@@ -108,7 +107,7 @@ button:hover {
 
 button.back {
     background-color: #f53d3d;
-    margin-left: 10px;
+    margin-left: 20px; /* Increased margin */
 }
 
 button.back:hover {
@@ -119,7 +118,7 @@ button.back:hover {
 table {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin-top: 30px; /* Increased margin */
 }
 
 table, th, td {
@@ -127,9 +126,9 @@ table, th, td {
 }
 
 th, td {
-    padding: 12px 15px;
+    padding: 18px 20px; /* Increased padding */
     text-align: center;
-    font-size: 16px;
+    font-size: 20px; /* Increased font size */
 }
 
 th {
@@ -148,13 +147,14 @@ tr:hover {
 /* Footer Styling */
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 15px; /* Increased padding */
     background-color: #0073e6;
     color: white;
     position: fixed;
     bottom: 0;
     width: 100%;
 }
+
 /* Media Queries: Adjust for Phones */
 @media screen and (max-width: 768px) {
     header h1 {
@@ -167,8 +167,8 @@ footer {
     }
 
     nav ul li {
-        display: block; /* Stack the links vertically */
-        margin: 75px 0; /* Add vertical margin between the links */
+        display: block;
+        margin: 75px 0;
     }
 
     input, select, button {
@@ -190,19 +190,19 @@ footer {
         font-size: 14px;
     }
 
-    /* Make tables scrollable on small screens */
     table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
+
     footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #0073e6;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+        text-align: center;
+        padding: 10px;
+        background-color: #0073e6;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
 }

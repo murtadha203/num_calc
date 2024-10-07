@@ -167,8 +167,8 @@ footer {
     }
 
     nav ul li {
-        display: block;
-        margin: 75px 0;
+        display: block; /* Stack the links vertically */
+        margin: 75px 0; /* Add vertical margin between the links */
     }
 
     input, select, button {
@@ -190,19 +190,19 @@ footer {
         font-size: 14px;
     }
 
+    /* Make tables scrollable on small screens */
     table {
         display: block;
         overflow-x: auto;
         white-space: nowrap;
     }
-
     footer {
-        text-align: center;
-        padding: 10px;
-        background-color: #0073e6;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-    }
+    text-align: center;
+    padding: 10px;
+    background-color: #0073e6;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
 }

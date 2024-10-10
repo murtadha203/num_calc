@@ -194,12 +194,24 @@ footer {
     }
 
     nav .tool-container {
-        flex-direction: column;
-        align-items: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
     }
 
-    nav .column {
-        max-width: 100%;
+    nav .tool-container .column {
+        flex-basis: 45%;
+        margin-bottom: 15px;
+    }
+
+    nav ul li a {
+        font-size: 18px; /* Reduce font size on small screens */
+        height: auto; /* Adjust height for smaller buttons */
+        padding: 10px; /* Reduce padding */
+    }
+
+    .form-buttons {
+        flex-direction: column; /* Stack buttons vertically */
     }
 
     input, select, button {
@@ -227,7 +239,7 @@ footer {
         overflow-x: auto;
         white-space: nowrap;
     }
-    
+
     footer {
         text-align: center;
         padding: 10px;

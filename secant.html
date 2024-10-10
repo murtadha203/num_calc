@@ -20,10 +20,10 @@
             <input type="text" id="formula" required>
 
             <label for="x_prev">Enter x<sub>i-1</sub></label>
-            <input type="number" id="x_prev" required>
+            <input type="number" step="any" id="x_prev" required>
 
             <label for="xi">Enter x<sub>i</sub></label>
-            <input type="number" id="xi" required>
+            <input type="number" step="any" id="xi" required>
 
             <label for="stopping-secant">Select stopping method:</label>
             <select id="stopping-secant">
@@ -32,7 +32,7 @@
                 <option value="iterations">Iterations</option>
             </select>
 
-            <input type="number" id="stopping-secant-value" required>
+            <input type="number" step="any" id="stopping-secant-value" required>
 
             <div class="form-buttons">
                 <button type="submit">Calculate</button>

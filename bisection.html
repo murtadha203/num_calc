@@ -20,10 +20,10 @@
             <input type="text" id="formula" required>
         
             <label for="xl">Enter x<sub>l</sub> (min value):</label>
-            <input type="number" id="xl" required>
+            <input type="number" step="any" id="xl" required>
         
             <label for="xk">Enter x<sub>k</sub> (max value):</label>
-            <input type="number" id="xk" required>
+            <input type="number" step="any" id="xk" required>
         
             <label for="stopping-bisection">Select stopping method:</label>
             <select id="stopping-bisection">
@@ -32,7 +32,7 @@
                 <option value="iterations">Iterations</option>
             </select>
         
-            <input type="number" id="stopping-bisection-value" required>
+            <input type="number" step="any" id="stopping-bisection-value" required>
         
             <div class="form-buttons">
                 <button type="submit">Calculate</button>

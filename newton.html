@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Newton Method</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Root Finding with Newton Method</h1>
+        <nav>
+            <a href="../index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="newton-form">
+            <label for="formula">Enter formula (e.g., e^x + cos(x) - 4x):</label>
+            <input type="text" id="formula" required>
+
+            <label for="xi">Enter X<sub>i</sub> (initial guess):</label>
+            <input type="number" id="xi" required>
+
+            <label for="stopping-newton">Select stopping method:</label>
+            <select id="stopping-newton">
+                <option value="digits">Significant digits</option>
+                <option value="error">Stopping error</option>
+                <option value="iterations">Iterations</option>
+            </select>
+
+            <input type="number" id="stopping-newton-value" required>
+
+            <div class="form-buttons">
+                <button type="submit">Calculate</button>
+                <button type="button" class="back" onclick="window.history.back();">Back</button>
+            </div>
+        </form>
+
+        <div id="derivative-result">
+            <!-- Derivative will be displayed here -->
+        </div>
+
+        <div id="newton-result">
+            <!-- Newton method results will be displayed here -->
+        </div>
+    </main>
+
+    <script src="./newton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.5.0/math.min.js"></script>
+</body>
+</html>

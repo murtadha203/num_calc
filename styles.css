@@ -30,24 +30,43 @@ header nav a {
 nav ul {
     list-style-type: none;
     padding: 0;
-    text-align: center;
+    margin: 0;
 }
 
-nav ul li {
-    display: inline-block;
-    margin: 0 20px; /* Increase horizontal margin between links */
+nav .tool-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
 }
 
+nav .tool-container .column {
+    flex: 1;
+    max-width: 45%; /* Each column takes up to 45% width */
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+nav .column ul {
+    padding: 0;
+}
+
+nav .column li {
+    margin-bottom: 20px;
+}
 
 nav ul li a {
     background-color: #005bb5;
     padding: 10px 20px;
     border-radius: 5px;
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     text-transform: uppercase;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    height: 40px;
 }
 
 nav ul li a:hover {
@@ -73,6 +92,13 @@ h2 {
 /* Form Styling */
 form {
     margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-buttons {
+    display: flex;
+    margin-top: 20px;
 }
 
 label {
@@ -82,9 +108,9 @@ label {
 }
 
 input, select {
-    width: 100%;
+    width: 75%;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border: 2px solid #0073e6;
     border-radius: 5px;
     font-size: 16px;
@@ -155,6 +181,7 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
 /* Media Queries: Adjust for Phones */
 @media screen and (max-width: 768px) {
     header h1 {
@@ -166,9 +193,13 @@ footer {
         margin: 0 5px;
     }
 
-    nav ul li {
-        display: block; /* Stack the links vertically */
-        margin: 75px 0; /* Add vertical margin between the links */
+    nav .tool-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav .column {
+        max-width: 100%;
     }
 
     input, select, button {
@@ -196,13 +227,14 @@ footer {
         overflow-x: auto;
         white-space: nowrap;
     }
+    
     footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #0073e6;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
+        text-align: center;
+        padding: 10px;
+        background-color: #0073e6;
+        color: white;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
 }

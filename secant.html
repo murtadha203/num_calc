@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secant Method</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Root Finding with Secant Method</h1>
+        <nav>
+            <a href="../index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <form id="secant-form">
+            <label for="formula">Enter formula (e.g., e^x + cos(x) - 4x):</label>
+            <input type="text" id="formula" required>
+
+            <label for="xi">Enter x<sub>i</sub></label>
+            <input type="number" id="xi" required>
+
+            <label for="x_prev">Enter x<sub>i-1</sub></label>
+            <input type="number" id="x_prev" required>
+
+            <label for="stopping-secant">Select stopping method:</label>
+            <select id="stopping-secant">
+                <option value="digits">Significant digits</option>
+                <option value="error">Stopping error</option>
+                <option value="iterations">Iterations</option>
+            </select>
+
+            <input type="number" id="stopping-secant-value" required>
+
+            <div class="form-buttons">
+                <button type="submit">Calculate</button>
+                <button type="button" class="back" onclick="window.history.back();">Back</button>
+            </div>
+        </form>
+
+        <div id="secant-result">
+            <!-- Secant method results will be displayed here -->
+        </div>
+    </main>
+
+    <script src="./secant.js"></script>
+</body>
+</html>

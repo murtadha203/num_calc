@@ -15,7 +15,8 @@ document.getElementById('bisection-form').addEventListener('submit', function(e)
 
         const table = document.createElement('table');
         const header = table.insertRow();
-        header.innerHTML = '<th>Iteration</th><th>xi</th><th>xk</th><th>xr</th><th>f(xi)</th><th>f(xk)</th><th>f(xr)</th><th>Approximate Error (%)</th>';
+        header.innerHTML = '<th>Iteration</th><th>x<sub>i</sub></th><th>x<sub>k</sub></th><th>x<sub>r</sub></th><th>f(x<sub>i</sub>)</th><th>f(x<sub>k</sub>)</th><th>f(x<sub>r</sub>)</th><th>Approximate Error (%)</th>';
+
 
         result.forEach(row => {
             const newRow = table.insertRow();
@@ -81,7 +82,7 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
         f_xi: f_xi.toFixed(6),
         f_xk: f_xk.toFixed(6),
         f_xr: f_xr.toFixed(6),
-        ea: "N/A"  // No error on the first calculation
+        ea: "-------"  // No error on the first calculation
     });
 
     // Iterate until the stopping condition is met

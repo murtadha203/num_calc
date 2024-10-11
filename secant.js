@@ -81,8 +81,8 @@ function secantMethod(formula, x_prev, xi, stoppingType, stoppingValue) {
         // Calculate approximate error
         let eaFormatted = "-------";  // No error on first iteration
         if (iteration > 1) {
-            ea = Math.abs((x_new - xi) / x_new) * 100;
-            eaFormatted = ea.toFixed(6);  // Format the error value
+            ea = Math.abs((xi - x_prev) / xi) * 100;  // Compare xi with x_prev for error
+            eaFormatted = ea.toFixed(5);  // Format the error value
         }
 
         // Push the result for this iteration

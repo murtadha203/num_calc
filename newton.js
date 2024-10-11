@@ -54,6 +54,7 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
     let iteration = 1;
     let maxIterations = 100;
     let es = 0;
+    let prev_xi = xi;  // Store the initial xi for calculating the error
 
     // Set stopping conditions
     if (stoppingType === 'digits') {
@@ -80,7 +81,7 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
         // Calculate approximate error
         let eaFormatted = "-------";  // No error on first iteration
         if (iteration > 1) {
-            ea = Math.abs((new_xi - xi) / new_xi) * 100;
+            ea = Math.abs((new_xi - prev_xi) / new_xi) * 100;
             eaFormatted = ea.toFixed(6);  // Format the error value
         }
 
@@ -93,11 +94,24 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
             ea: eaFormatted
         });
 
+        // Update xi and prev_xi for the next iteration
+        prev_xi = xi;
         xi = new_xi;
         iteration++;
 
         // Check stopping condition
         if (ea <= es || iteration > maxIterations) break;
+    }
+
+    // Include final iteration if needed
+    if (ea <= es && iteration <= maxIterations) {
+        output.push({
+            iteration,
+            xi: xi.toFixed(6),
+            f_xi: evaluateFormula(formula, xi).toFixed(6),
+            f_prime_xi: evaluateFormula(derivativeFormula, xi).toFixed(6),
+            ea: ea.toFixed(6)
+        });
     }
 
     return output;
@@ -110,7 +124,6 @@ function displayResults(result) {
     const table = document.createElement('table');
     const header = table.insertRow();
     header.innerHTML = '<th>Iteration</th><th>X<sub>i</sub></th><th>f(X<sub>i</sub>)</th><th>f\'(X<sub>i</sub>)</th><th>Approximate Error (%)</th>';
-
 
     result.forEach(row => {
         const newRow = table.insertRow();

@@ -107,7 +107,11 @@ function bisectionMethod(formula, xl, xk, stoppingType, stoppingValue) {
         f_xr = evaluateFormula(formula, xr);
 
         // Calculate the approximate error
-        ea = Math.abs((xr - old_xr) / xr) * 100;
+        if (iteration === 2) {
+            ea = 100;  // For the second iteration, set error to 100%
+        } else {
+            ea = Math.abs((xr - old_xr) / xr) * 100;
+        }
 
         // Push the result for this iteration
         output.push({

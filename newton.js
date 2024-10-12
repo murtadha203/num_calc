@@ -50,13 +50,13 @@ function evaluateFormula(formula, x) {
 }
 
 function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormula) {
-    let ea = 100;
+    let ea = Infinity; // Start with infinite error
     let iteration = 1;
     let maxIterations = 100;
     let es = 0;
-    let prev_xi = xi;  // Store the initial xi for calculating the error
+    let prev_xi = xi;
 
-    // Set stopping conditions
+    // Set stopping conditions based on significant digits or error threshold
     if (stoppingType === 'digits') {
         es = 0.5 * Math.pow(10, 2 - stoppingValue);
     } else if (stoppingType === 'error') {
@@ -72,18 +72,17 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
         const f_xi = evaluateFormula(formula, xi);
         const f_prime_xi = evaluateFormula(derivativeFormula, xi);
 
+        if (iteration > 1) {
+            ea = Math.abs((prev_xi - xi) / xi) * 100;
+        }
         if (f_prime_xi === 0) {
             throw new Error('Derivative became zero. Cannot continue.');
         }
 
         const new_xi = xi - (f_xi / f_prime_xi);
 
-        // Calculate approximate error
-        let eaFormatted = "-------";  // No error on first iteration
-        if (iteration > 1) {
-            ea = Math.abs((new_xi - prev_xi) / new_xi) * 100;
-            eaFormatted = ea.toFixed(6);  // Format the error value
-        }
+        // Calculate approximate error only after the first iteration
+
 
         // Push the result for this iteration
         output.push({
@@ -91,10 +90,10 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
             xi: xi.toFixed(6),
             f_xi: f_xi.toFixed(6),
             f_prime_xi: f_prime_xi.toFixed(6),
-            ea: eaFormatted
+            ea: iteration === 1 ? "-------" : ea.toFixed(6)
         });
 
-        // Update xi and prev_xi for the next iteration
+        // Update xi for the next iteration
         prev_xi = xi;
         xi = new_xi;
         iteration++;
@@ -103,20 +102,36 @@ function newtonMethod(formula, xi, stoppingType, stoppingValue, derivativeFormul
         if (ea <= es || iteration > maxIterations) break;
     }
 
-    // Include final iteration if needed
-    if (ea <= es && iteration <= maxIterations) {
-        output.push({
-            iteration,
-            xi: xi.toFixed(6),
-            f_xi: evaluateFormula(formula, xi).toFixed(6),
-            f_prime_xi: evaluateFormula(derivativeFormula, xi).toFixed(6),
-            ea: ea.toFixed(6)
-        });
-    }
-
     return output;
 }
 
+function evaluateFormula(formula, x) {
+    try {
+        return math.evaluate(formula, { x: x });
+    } catch (e) {
+        throw new Error('Invalid formula. Please ensure correct syntax.');
+    }
+}
+
+function displayResults(result) {
+    const resultDiv = document.getElementById('newton-result');
+    resultDiv.innerHTML = ''; // Clear previous results
+
+    const table = document.createElement('table');
+    const header = table.insertRow();
+    header.innerHTML = '<th>Iteration</th><th>X<sub>i</sub></th><th>f(X<sub>i</sub>)</th><th>f\'(X<sub>i</sub>)</th><th>Approximate Error (%)</th>';
+
+    result.forEach(row => {
+        const newRow = table.insertRow();
+        newRow.innerHTML = `<td>${row.iteration}</td><td>${row.xi}</td><td>${row.f_xi}</td><td>${row.f_prime_xi}</td><td>${row.ea}</td>`;
+    });
+
+    resultDiv.appendChild(table);
+}
+
+
+
+// Function to display results in a table
 function displayResults(result) {
     const resultDiv = document.getElementById('newton-result');
     resultDiv.innerHTML = ''; // Clear previous results

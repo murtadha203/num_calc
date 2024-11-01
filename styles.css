@@ -1,9 +1,10 @@
-/* Base styles (keep your design intact) */
+/* Base styles */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f5f5f5;
     color: #333;
     padding: 20px;
+    text-align: center;
 }
 
 header {
@@ -14,64 +15,16 @@ header {
 }
 
 header h1 {
-    font-size: 36px;
+    font-size: 42px;
     margin-bottom: 10px;
 }
 
 header nav a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 20px;
     margin: 0 10px;
     font-weight: bold;
-}
-
-/* Navigation List */
-nav ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav .tool-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin-top: 50px;
-}
-
-nav .tool-container .column {
-    flex: 1;
-    max-width: 45%; /* Each column takes up to 45% width */
-    min-width: 200px;
-    margin-bottom: 20px;
-}
-
-nav .column ul {
-    padding: 0;
-}
-
-nav .column li {
-    margin-bottom: 20px;
-}
-
-nav ul li a {
-    background-color: #005bb5;
-    padding: 10px 20px;
-    border-radius: 5px;
-    color: white;
-    font-size: 25px;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-    display: block;
-    text-align: center;
-    height: 40px;
-    margin-bottom: 15px;
-}
-
-nav ul li a:hover {
-    background-color: #003f7d;
 }
 
 /* Main Content */
@@ -85,20 +38,23 @@ main {
 }
 
 h2 {
-    font-size: 28px;
+    font-size: 32px;
     margin-bottom: 20px;
     color: #0073e6;
+    text-align: center;
 }
 
 /* Form Styling */
-form {
-    margin-bottom: 40px;
-    display: flex;
-    flex-direction: column;
+textarea#paste-matrix {
+    width: 80%;
+    height: 100px;
+    font-size: 16px;
 }
 
 .form-buttons {
     display: flex;
+    justify-content: center;
+    gap: 20px;
     margin-top: 20px;
 }
 
@@ -125,7 +81,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 20px;
     transition: background-color 0.3s ease;
 }
 
@@ -135,7 +91,6 @@ button:hover {
 
 button.back {
     background-color: #f53d3d;
-    margin-left: 10px;
 }
 
 button.back:hover {
@@ -156,7 +111,7 @@ table, th, td {
 th, td {
     padding: 12px 15px;
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
 }
 
 th {
@@ -183,6 +138,52 @@ footer {
     width: 100%;
 }
 
+/* Final Equations Styling for Centered and Aligned Equations */
+.final-equation {
+    display: flex;
+    justify-content: center; /* Center align the whole equation */
+    gap: 10px; /* Space between terms */
+    font-size: 24px;
+    margin: 15px 0;
+}
+
+.final-equation .term {
+    min-width: 50px; /* Fixed width for alignment */
+    text-align: right; /* Align terms to the right */
+}
+
+.final-equation .operator {
+    min-width: 20px; /* Smaller width for operators */
+    text-align: center;
+}
+
+/* Fraction Styling */
+.fraction {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.9em;
+    vertical-align: middle; /* Align the fraction to the middle of the line */
+    transform: translateY(-0.1em); /* Slightly adjust fraction position */
+}
+
+.fraction .numerator {
+    border-bottom: 1px solid black;
+    padding: 0 2px;
+    margin-bottom: 2px;
+}
+
+.fraction .denominator {
+    padding: 0 2px;
+    margin-top: 2px;
+}
+
+/* Align subscript closer to base character */
+.final-equation sub {
+    font-size: 0.7em;
+    vertical-align: -0.4em;
+}
+
 /* Media Queries: Adjust for Phones */
 @media screen and (max-width: 768px) {
     header h1 {
@@ -194,26 +195,8 @@ footer {
         margin: 0 5px;
     }
 
-    nav .tool-container {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    nav .tool-container .column {
-        flex-basis: 45%;
-        margin-bottom: 15px;
-    }
-
-    nav ul li a {
-        font-size: 18px; /* Reduce font size on small screens */
-        height: auto; /* Adjust height for smaller buttons */
-        padding: 10px; /* Reduce padding */
-        margin-bottom: 15px;
-    }
-
     .form-buttons {
-        flex-direction: column; /* Stack buttons vertically */
+        flex-direction: column;
     }
 
     input, select, button {
@@ -243,12 +226,7 @@ footer {
     }
 
     footer {
-        text-align: center;
         padding: 10px;
-        background-color: #0073e6;
-        color: white;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
+        font-size: 12px;
     }
 }

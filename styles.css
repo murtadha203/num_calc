@@ -15,16 +15,64 @@ header {
 }
 
 header h1 {
-    font-size: 42px;
+    font-size: 36px;
     margin-bottom: 10px;
 }
 
 header nav a {
     color: white;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     margin: 0 10px;
     font-weight: bold;
+}
+
+/* Navigation List */
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav .tool-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+nav .tool-container .column {
+    flex: 1;
+    max-width: 45%; /* Each column takes up to 45% width */
+    min-width: 200px;
+    margin-bottom: 20px;
+}
+
+nav .column ul {
+    padding: 0;
+}
+
+nav .column li {
+    margin-bottom: 20px;
+}
+
+nav ul li a {
+    background-color: #005bb5;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: white;
+    font-size: 25px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: block;
+    text-align: center;
+    height: 40px;
+    margin-bottom: 15px;
+}
+
+nav ul li a:hover {
+    background-color: #003f7d;
 }
 
 /* Main Content */
@@ -45,6 +93,12 @@ h2 {
 }
 
 /* Form Styling */
+form {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
 textarea#paste-matrix {
     width: 80%;
     height: 100px;
@@ -81,7 +135,7 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 18px;
     transition: background-color 0.3s ease;
 }
 
@@ -91,6 +145,7 @@ button:hover {
 
 button.back {
     background-color: #f53d3d;
+    margin-left: 10px;
 }
 
 button.back:hover {
@@ -195,8 +250,26 @@ footer {
         margin: 0 5px;
     }
 
+    nav .tool-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    nav .tool-container .column {
+        flex-basis: 45%;
+        margin-bottom: 15px;
+    }
+
+    nav ul li a {
+        font-size: 18px; /* Reduce font size on small screens */
+        height: auto; /* Adjust height for smaller buttons */
+        padding: 10px; /* Reduce padding */
+        margin-bottom: 15px;
+    }
+
     .form-buttons {
-        flex-direction: column;
+        flex-direction: column; /* Stack buttons vertically */
     }
 
     input, select, button {

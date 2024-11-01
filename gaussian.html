@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaussian Elimination Solver</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gaussian Elimination Solver</h1>
+        <nav>
+            <a href="./index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Main Input Form -->
+        <div id="input-section">
+            <label for="num-vars">Enter the number of variables (n):</label>
+            <input type="number" id="num-vars" min="1" required>
+            <button id="show-grid">Show Grid</button>
+
+            <label for="paste-matrix">Or paste the matrix here (space-separated, rows by newlines):</label>
+            <textarea id="paste-matrix" placeholder="e.g., 1 2 3
+4 5 6
+7 8 9"></textarea>
+            <button id="populate-matrix">Populate Matrix</button>
+
+            <!-- Matrix Grid Container -->
+            <div id="matrix-container"></div>
+        </div>
+
+        <!-- Solve and Back Buttons -->
+        <div class="form-buttons">
+            <button id="solve-button">Solve</button>
+            <button class="back" onclick="window.history.back();">Back</button>
+        </div>
+
+        <!-- Result Display Section -->
+        <section id="result-section" style="display: none;"> <!-- Hide initially -->
+            <h2>Solution Steps</h2>
+            <div id="steps-display"></div>
+            <h2>Final System of Equations</h2>
+            <div id="final-equations"></div>
+            <h2>Solution</h2>
+            <div id="solution-display"></div>
+        </section>
+    </main>
+
+    <script src="./gaussian.js"></script>
+</body>
+</html>

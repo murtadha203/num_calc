@@ -15,12 +15,11 @@ document.getElementById('secant-form').addEventListener('submit', function(e) {
 
         const table = document.createElement('table');
         const header = table.insertRow();
-        header.innerHTML = '<th>Iteration</th><th>x<sub>i-1</sub></th><th>x<sub>i</sub></th><th>f(x<sub>i-1</sub>)</th><th>f(x<sub>i</sub>)</th><th>Approximate Error (%)</th>';
-
+        header.innerHTML = '<th>Iteration</th><th>x<sub>i-1</sub></th><th>x<sub>i</sub></th><th>x<sub>i+1</sub></th><th>f(x<sub>i+1</sub>)</th><th>Approximate Error (%)</th>';
 
         result.forEach(row => {
             const newRow = table.insertRow();
-            newRow.innerHTML = `<td>${row.iteration}</td><td>${row.x_prev}</td><td>${row.xi}</td><td>${row.f_x_prev}</td><td>${row.f_xi}</td><td>${row.ea}</td>`;
+            newRow.innerHTML = `<td>${row.iteration}</td><td>${row.x_prev}</td><td>${row.xi}</td><td>${row.x_new}</td><td>${row.f_x_new}</td><td>${row.ea}</td>`;
         });
 
         resultDiv.appendChild(table);
@@ -77,11 +76,12 @@ function secantMethod(formula, x_prev, xi, stoppingType, stoppingValue) {
         }
 
         const x_new = xi - (f_xi * (xi - x_prev)) / (f_xi - f_x_prev);
+        const f_x_new = evaluateFormula(formula, x_new);
 
         // Calculate approximate error
         let eaFormatted = "-------";  // No error on first iteration
         if (iteration > 1) {
-            ea = Math.abs((xi - x_prev) / xi) * 100;  // Compare xi with x_prev for error
+            ea = Math.abs((x_new - xi) / (x_new + 1e-15)) * 100;  // Compare x_new with xi for error
             eaFormatted = ea.toFixed(5);  // Format the error value
         }
 
@@ -90,8 +90,8 @@ function secantMethod(formula, x_prev, xi, stoppingType, stoppingValue) {
             iteration,
             x_prev: x_prev.toFixed(6),
             xi: xi.toFixed(6),
-            f_x_prev: f_x_prev.toFixed(6),
-            f_xi: f_xi.toFixed(6),
+            x_new: x_new.toFixed(6),
+            f_x_new: f_x_new.toFixed(6),
             ea: eaFormatted
         });
 

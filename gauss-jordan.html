@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gauss-Jordan Elimination Solver</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Gauss-Jordan Elimination Solver</h1>
+        <nav>
+            <a href="./index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Input Section -->
+        <div id="input-section">
+            <label for="paste-matrix">Paste the matrix here (space-separated, rows by newlines):</label>
+            <textarea id="paste-matrix" placeholder="e.g., 1 2 3
+4 5 6
+7 8 9"></textarea>
+        </div>
+
+        <button id="populate-matrix">Populate Matrix</button>
+        <div id="matrix-container"></div>
+
+        <!-- Solve Button -->
+        <div class="form-buttons">
+            <button id="solve-gauss-jordan-button">Solve</button>
+            <button class="back" onclick="window.history.back();">Back</button>
+        </div>
+
+        <!-- Result Display Section -->
+        <section id="result-section" style="display: none;">
+            <h2>Solution Steps</h2>
+            <div id="steps-display"></div>
+            <h2>Solution</h2>
+            <div id="solution-display"></div>
+        </section>
+    </main>
+
+    <script src="./gauss-jordan.js"></script>
+</body>
+</html>

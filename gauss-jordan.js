@@ -64,30 +64,34 @@ document.addEventListener('DOMContentLoaded', () => {
         const n = matrix.length;
         const steps = { operations: [], final: [], finalEquations: [], matrices: [] };
 
-        // Forward elimination (reuse Gaussian elimination logic)
+        // Step 1: Zero out the lower triangle
         for (let i = 0; i < n; i++) {
+            for (let j = i + 1; j < n; j++) {
+                if (matrix[j][i] === 0) continue; // Skip if already zero
+                const factor = -matrix[j][i] / matrix[i][i];
+                for (let k = 0; k <= n; k++) {
+                    matrix[j][k] += factor * matrix[i][k];
+                }
+                steps.operations.push(`R${j + 1} = R${j + 1} + (${toFraction(factor)}) * R${i + 1}`);
+                steps.matrices.push(matrix.map(row => [...row])); // Deep copy
+            }
+        }
+
+        // Step 2: Backward substitution with diagonal normalization
+        for (let i = n - 1; i >= 0; i--) {
+            // Divide the current row by the diagonal element
             const diag = matrix[i][i];
             if (diag !== 0) {
                 for (let k = 0; k <= n; k++) {
                     matrix[i][k] /= diag;
                 }
                 steps.operations.push(`R${i + 1} = R${i + 1} / ${toFraction(diag)}`);
-                steps.matrices.push(matrix.map(row => [...row])); // Deep copy of the matrix
-            }
-
-            for (let j = i + 1; j < n; j++) {
-                const factor = -matrix[j][i];
-                for (let k = 0; k <= n; k++) {
-                    matrix[j][k] += factor * matrix[i][k];
-                }
-                steps.operations.push(`R${j + 1} = R${j + 1} + (${toFraction(factor)}) * R${i + 1}`);
                 steps.matrices.push(matrix.map(row => [...row]));
             }
-        }
 
-        // Backward elimination
-        for (let i = n - 1; i >= 0; i--) {
+            // Zero out the current column in rows above
             for (let j = i - 1; j >= 0; j--) {
+                if (matrix[j][i] === 0) continue; // Skip if already zero
                 const factor = -matrix[j][i];
                 for (let k = 0; k <= n; k++) {
                     matrix[j][k] += factor * matrix[i][k];
@@ -97,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
+        // Extract final equations and solution
         steps.finalEquations = formatFinalSystem(matrix);
         steps.final = matrix.map(row => toFraction(row[n]));
 

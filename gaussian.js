@@ -68,7 +68,28 @@ document.addEventListener('DOMContentLoaded', () => {
     function gaussianElimination(matrix) {
         const n = matrix.length;
         const steps = { operations: [], final: [], finalEquations: [], matrices: [] };
-
+    
+        // Ensure no zero on the diagonal
+        for (let i = 0; i < n; i++) {
+            if (matrix[i][i] === 0) {
+                let swapped = false;
+                for (let j = i + 1; j < n; j++) {
+                    if (matrix[j][i] !== 0) {
+                        // Swap rows i and j
+                        [matrix[i], matrix[j]] = [matrix[j], matrix[i]];
+                        steps.operations.push(`Swap R${i + 1} with R${j + 1}`);
+                        steps.matrices.push(matrix.map(row => [...row])); // Deep copy the matrix
+                        swapped = true;
+                        break;
+                    }
+                }
+                if (!swapped) {
+                    throw new Error(`Cannot solve: Zero diagonal element at index [${i}][${i}] and no row to swap.`);
+                }
+            }
+        }
+    
+        // Perform Gaussian Elimination
         const lowTri = [];
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < n; j++) {
@@ -77,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-
+    
         for (const [i, j] of lowTri) {
             let rows;
             if (j === 0) {
@@ -85,13 +106,18 @@ document.addEventListener('DOMContentLoaded', () => {
             } else {
                 rows = Array.from({ length: i - j + 1 }, (_, idx) => idx + (i - j)); // Rows up to current row i
             }
-
-            const trow = rows.filter(rw => rw !== i && matrix[rw][j] !== 0);
+    
+            const trow = rows.filter(rw =>
+                rw !== i &&
+                matrix[rw] !== undefined && // Ensure the row exists
+                j < matrix[rw].length &&    // Ensure the column index is valid
+                matrix[rw][j] !== 0         // Check the actual value
+            );
             if (trow.length === 0) continue;
-
+    
             let bestRow = trow[0];
             let bestFac = Infinity;
-
+    
             trow.forEach(r => {
                 const fac = matrix[i][j] / matrix[r][j];
                 if (Number.isInteger(fac) && Math.abs(fac) < Math.abs(bestFac)) {
@@ -99,30 +125,30 @@ document.addEventListener('DOMContentLoaded', () => {
                     bestFac = fac;
                 }
             });
-
+    
             const factor = -matrix[i][j] / matrix[bestRow][j];
             steps.operations.push(`R${i + 1} = R${i + 1} + (${toFraction(factor)}) * R${bestRow + 1}`);
-
+    
             for (let k = 0; k <= n; k++) {
                 matrix[i][k] += factor * matrix[bestRow][k];
             }
-
+    
             steps.matrices.push(matrix.map(row => [...row])); // Deep copy the matrix for each step
         }
-
+    
         steps.finalEquations = formatFinalSystem(matrix);
-
+    
         const x = Array(n).fill(0);
         for (let i = n - 1; i >= 0; i--) {
             let sum = matrix[i][n];
             for (let j = i + 1; j < n; j++) sum -= matrix[i][j] * x[j];
             x[i] = sum / matrix[i][i];
         }
-
+    
         steps.final = x.map((val, idx) => toFraction(val));
         return steps;
     }
-
+    
     function formatFinalSystem(matrix) {
         const equations = [];
         for (let i = 0; i < matrix.length; i++) {

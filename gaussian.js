@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function displayMatrix(matrix) {
-        let html = '<table>';
+        let html = '<table id=dis>';
         matrix.forEach(row => {
             html += '<tr>';
             row.forEach(value => {

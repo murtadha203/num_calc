@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     
             const factor = -matrix[i][j] / matrix[bestRow][j];
+            if (factor === 0) continue;
             steps.operations.push(`R${i + 1} = R${i + 1} + (${toFraction(factor)}) * R${bestRow + 1}`);
     
             for (let k = 0; k <= n; k++) {

@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Step 2: Normalize diagonals and zero out upper triangle
         for (let i = n - 1; i >= 0; i--) {
             const diag = matrix[i][i];
+            if (diag === 1) continue;
             for (let k = 0; k < n; k++) {
                 matrix[i][k] = round(matrix[i][k] / diag);
                 augmentedMatrix[i][k] = round(augmentedMatrix[i][k] / diag);

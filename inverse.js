@@ -66,6 +66,26 @@ document.addEventListener('DOMContentLoaded', () => {
         const n = matrix.length;
         const steps = { operations: [], matrices: [], finalMatrix: [] };
 
+        //step 0 : make sure there is no zero on the dignoal
+        for (let i = 0; i < n; i++) {
+            if (matrix[i][i] === 0) {
+                let swapped = false;
+                for (let j = i + 1; j < n; j++) {
+                    if (matrix[j][i] !== 0) {
+                        // Swap rows i and j
+                        [matrix[i], matrix[j]] = [matrix[j], matrix[i]];
+                        steps.operations.push(`Swap R${i + 1} with R${j + 1}`);
+                        steps.matrices.push(matrix.map(row => [...row])); // Deep copy the matrix
+                        swapped = true;
+                        break;
+                    }
+                }
+                if (!swapped) {
+                    throw new Error(`Cannot solve: Zero diagonal element at index [${i}][${i}] and no row to swap.`);
+                }
+            }
+        }
+
         // Step 1: Zero out lower triangle
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < i; j++) {

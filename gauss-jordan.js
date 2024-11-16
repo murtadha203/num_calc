@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 for (let k = 0; k <= n; k++) {
                     matrix[i][k] /= diag;
                 }
-                steps.operations.push(`R${i + 1} = R${i + 1} / ${toFraction(diag)}`);
+                steps.operations.push(`R${i + 1} = R${i + 1} / (${toFraction(diag)})`);
                 steps.matrices.push(matrix.map(row => [...row]));
             }
 

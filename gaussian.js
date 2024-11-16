@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let numerator = 1;
         let denominator = 1;
     
-        if (decimal === Math.floor(decimal)) return decimal.toString();
+        if (decimal === Math.floor(decimal)) return decimal.toString(); // Return whole numbers as is
     
         while (Math.abs(decimal - numerator / denominator) > tolerance) {
             if (decimal > numerator / denominator) {
@@ -234,10 +234,17 @@ document.addEventListener('DOMContentLoaded', () => {
         numerator /= divisor;
         denominator /= divisor;
     
+        // If denominator > 25 or denominator == 10, return rounded decimal
+        if (denominator > 25 || denominator === 10) {
+            return (Math.round(decimal * 100000) / 100000).toString(); // Round to 5 decimal places
+        }
+    
         if (denominator === 1) {
-            return numerator.toString();
+            return numerator.toString(); // Return as a whole number if denominator is 1
         } else {
             return `<span class="fraction"><span class="numerator">${numerator}</span><span class="denominator">${denominator}</span></span>`;
         }
     }
+    
+    
 });

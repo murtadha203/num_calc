@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = n - 1; i >= 0; i--) {
             // Divide the current row by the diagonal element
             const diag = matrix[i][i];
+            if (diag === 1) continue;
             if (diag !== 0) {
                 for (let k = 0; k <= n; k++) {
                     matrix[i][k] /= diag;

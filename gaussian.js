@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (j === 0) {
                 rows = Array.from({ length: n }, (_, idx) => idx); // All rows if j == 0
             } else {
-                rows = Array.from({ length: i - j + 1 }, (_, idx) => idx + (i - j)); // Rows up to current row i
+                rows = Array.from({ length: i - j }, (_, idx) => j + idx); // Rows up to current row i
             }
     
             const trow = rows.filter(rw =>
@@ -148,23 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
         steps.final = x.map((val, idx) => toFraction(val));
         return steps;
-    }
-    
-    function formatFinalSystem(matrix) {
-        const equations = [];
-        for (let i = 0; i < matrix.length; i++) {
-            let equation = '<div class="final-equation">';
-            for (let j = 0; j < matrix[i].length - 1; j++) {
-                const coef = toFraction(matrix[i][j]);
-                if (coef !== "0") {
-                    if (j > 0 && matrix[i][j] > 0) equation += ' + ';
-                    equation += `${coef}<span>x<sub>${j + 1}</sub></span>`;
-                }
-            }
-            equation += ` = ${toFraction(matrix[i][matrix[i].length - 1])}</div>`;
-            equations.push(equation);
-        }
-        return equations;
     }
 
     function formatFinalSystem(matrix) {

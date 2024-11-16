@@ -100,9 +100,10 @@ form {
 }
 
 textarea#paste-matrix {
-    width: 80%;
+    width: 25%;
     height: 100px;
-    font-size: 16px;
+    font-size: 25px;
+    text-align: center;
 }
 
 .form-buttons {
@@ -154,13 +155,19 @@ button.back:hover {
 
 /* Table Styling */
 table {
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-left: 20%;
 }
 
 table, th, td {
     border: 1px solid #ddd;
+}
+#dis{
+    width: 40%;
+    margin-left: 30%;
+    margin-bottom: 15px;
 }
 
 th, td {

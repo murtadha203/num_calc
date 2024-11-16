@@ -1,6 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const numVarsInput = document.getElementById('num-vars');
-    const showGridButton = document.getElementById('show-grid');
     const pasteMatrixInput = document.getElementById('paste-matrix');
     const populateMatrixButton = document.getElementById('populate-matrix');
     const matrixContainer = document.getElementById('matrix-container');
@@ -12,22 +10,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let matrix = [];
 
-    showGridButton.addEventListener('click', () => {
-        const n = parseInt(numVarsInput.value);
-        if (isNaN(n) || n < 1) return alert('Please enter a valid number of variables.');
-        generateMatrixGrid(n);
-    });
-
     populateMatrixButton.addEventListener('click', () => {
         const pastedData = parsePastedMatrix(pasteMatrixInput.value);
         if (pastedData) {
             const n = pastedData.length;
-            numVarsInput.value = n;
             generateMatrixGrid(n, pastedData);
         } else {
             alert('Invalid matrix format. Please ensure it is space-separated.');
         }
     });
+    
+    
 
     solveButton.addEventListener('click', () => {
         readMatrixFromGrid();

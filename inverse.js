@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
         for (let i = 0; i < n; i++) {
             for (let j = 0; j < i; j++) {
                 const factor = round(-matrix[i][j] / matrix[j][j]);
+                if (factor === 0) continue;
                 for (let k = 0; k < n; k++) {
                     matrix[i][k] = round(matrix[i][k] + factor * matrix[j][k]);
                     augmentedMatrix[i][k] = round(augmentedMatrix[i][k] + factor * augmentedMatrix[j][k]);
@@ -91,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             for (let j = 0; j < i; j++) {
                 const factor = round(-matrix[j][i]);
+                if (factor === 0) continue;
                 for (let k = 0; k < n; k++) {
                     matrix[j][k] = round(matrix[j][k] + factor * matrix[i][k]);
                     augmentedMatrix[j][k] = round(augmentedMatrix[j][k] + factor * augmentedMatrix[i][k]);

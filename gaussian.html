@@ -17,19 +17,15 @@
     <main>
         <!-- Main Input Form -->
         <div id="input-section">
-            <label for="num-vars">Enter the number of variables (n):</label>
-            <input type="number" id="num-vars" min="1" required>
-            <button id="show-grid">Show Grid</button>
-
-            <label for="paste-matrix">Or paste the matrix here (space-separated, rows by newlines):</label>
+            <label for="paste-matrix">Paste the matrix here (space-separated, rows by newlines):</label>
             <textarea id="paste-matrix" placeholder="e.g., 1 2 3
 4 5 6
 7 8 9"></textarea>
-            <button id="populate-matrix">Populate Matrix</button>
-
-            <!-- Matrix Grid Container -->
-            <div id="matrix-container"></div>
         </div>
+        <button id="populate-matrix">Populate Matrix</button>
+
+        <!-- Matrix Grid Container -->
+        <div id="matrix-container"></div>
 
         <!-- Solve and Back Buttons -->
         <div class="form-buttons">

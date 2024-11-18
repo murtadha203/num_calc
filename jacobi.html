@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacobi Method Solver</title>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <h1>Jacobi Method Solver</h1>
+        <nav>
+            <a href="./index.html">Back to Home</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Input Section -->
+        <div id="input-section">
+            <label for="paste-matrix">Paste the matrix here (space-separated, rows by newlines):</label>
+            <textarea id="paste-matrix" placeholder="e.g., 5 1 1 1
+1 6 2 2
+1 2 7 3" style="width: 300px; height: 140px;"></textarea>
+        </div>
+
+        <button id="populate-matrix">Populate Matrix</button>
+        <div id="matrix-container"></div>
+
+        <!-- Stopping Method Selection -->
+        <label for="stopping-method">Select Stopping Method:</label>
+        <select id="stopping-method">
+            <option value="digits">Significant Digits</option>
+            <option value="error">Stopping Error</option>
+            <option value="iterations">Max Iterations</option>
+        </select>
+
+        <input type="number" step="any" id="stopping-value" placeholder="e.g., 5" />
+
+        <!-- Solve Button -->
+        <div class="form-buttons">
+            <button id="solve-jacobi-button">Solve</button>
+            <button class="back" onclick="window.history.back();">Back</button>
+        </div>
+
+        <!-- Result Display Section -->
+        <section id="result-section" style="display: none;">
+            <h2>Solution Steps</h2>
+            <div id="steps-display"></div>
+            <h2>Solution</h2>
+            <div id="solution-display"></div>
+        </section>
+    </main>
+
+    <script src="./jacobi.js"></script>
+</body>
+</html>
